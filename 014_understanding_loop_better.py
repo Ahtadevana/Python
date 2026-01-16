@@ -76,3 +76,4 @@ for i in range(1, 20, 3):
     if i == 16:
         break
     print(i)
+print(spaces)
