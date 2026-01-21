@@ -1,37 +1,43 @@
 import random
 
 options = ("rock", "paper", "scissor")
-opponent = random.choice(options)
-tries = 0
+player = ""
+player_score = 0
+computer_score = 0
+is_running = True
 
-while True:
-    hand = input("Rock, paper, or scissors?: ")
-
-    if hand == "q":
-        break
-    elif hand == "rock":
-        if opponent == "rock":
-            print("TIE")
-        elif opponent == "paper":
-            print("YOU LOSE!")
-        else:
-            print("YOU WIN!")
-    elif hand == "paper":
-        if opponent == "rock":
-            print("YOU WIN!")
-        elif opponent == "paper":
-            print("TIE")
-        else:
-            print("YOU LOSE!")
-    elif hand == "scissor":
-        if opponent == "rock":
-            print("YOU LOSE!")
-        elif opponent == "paper":
-            print("YOU WIN!")
-        else:
-            print("TIE")
+while is_running:
+    computer = random.choice(options)
+    while not player in options:
+        player = input("Input your choice (rock, paper, scissor): ").lower()
+    
+    print(f"{player} vs {computer}", end=": ")
+    if player == computer:
+        print("TIE!")
+    elif player == "rock" and computer == "scissor":
+        print("YOU WIN!")
+        player_score += 1
+    elif player == "paper" and computer == "rock":
+        print("YOU WIN!")
+        player_score += 1
+    elif player == "scissor" and computer == "paper":
+        print("YOU WIN!")
+        player_score += 1
     else:
-        print("What is that hand form? Try again.")
+        print("YOU LOSE!")
+        computer_score += 1
 
-    print(f"{hand} vs {opponent}")
-    input("Play again?(q to quit)")
+    print(f"""-----
+You : Computer
+{player_score} : {computer_score}
+-----""")
+
+    if not input("Play again?(y/n): ") == "y":
+        is_running = False
+    player = ""
+
+print(f"""-----
+Your final score is:
+You : Computer
+{player_score} : {computer_score}""")
+print("Thanks for playing!")
