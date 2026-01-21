@@ -1,7 +1,7 @@
 import random
 
 options = ("rock", "paper", "scissor")
-player = ""
+player = None
 player_score = 0
 computer_score = 0
 is_running = True
@@ -34,7 +34,7 @@ You : Computer
 
     if not input("Play again?(y/n): ") == "y":
         is_running = False
-    player = ""
+    player = None
 
 print(f"""-----
 Your final score is:
